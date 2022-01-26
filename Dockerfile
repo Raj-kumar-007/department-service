@@ -9,7 +9,7 @@ RUN ["mvn","package","-DskipTests"]
 
 FROM openjdk:11-jdk
 
-WORKDIR /app
+WORKDIR /department-service
 
 COPY --from=build /department-service/target/department-service-1.0.jar /department-service/department-service.jar
 
@@ -19,4 +19,4 @@ EXPOSE 8080
 ## Below values are DEFAULTS, Must be Overidden in deployment artifacts
 ##ENV DBURL=orderdb DBUSER=mahendra DBPASS=pass@1234 DBNAME=orderdb
 
-CMD [ "java","-jar","/app/api-app.jar" ]
+CMD [ "java","-jar","/department-service/department-service.jar" ]
