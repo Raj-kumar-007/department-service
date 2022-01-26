@@ -1,0 +1,45 @@
+apiVersion: department-service/v1
+kind: Deployment
+metadata:
+  name: department-service
+spec:
+  selector:
+    matchLabels:
+      app: sample-department-service
+      tier: department-service
+  template:
+    metadata:
+      labels:
+        app: sample-department-service
+        tier: department-service
+    spec:
+      containers:
+        - name: department-service
+          image: Rajkumar/department-service
+#          env:
+#            - name: DBURL
+#              valueFrom:
+#                configMapKeyRef:
+#                  key: MYSQL_URL
+#                  name: dbconfig
+#            - name: DBUSER
+#              valueFrom:
+#                configMapKeyRef:
+#                  key: MYSQL_USER
+#                  name: dbconfig
+#            - name: DBPASS
+#              valueFrom:
+#                configMapKeyRef:
+#                  key: MYSQL_PASSWORD
+#                  name: dbconfig
+#            - name: DBNAME
+#              valueFrom:
+#                configMapKeyRef:
+#                  key: MYSQL_DATABASE
+#                  name: dbconfig
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
